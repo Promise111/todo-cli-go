@@ -45,8 +45,8 @@ func (todos *Todos) delete(index int) error {
 	return nil
 }
 
-func (todo *Todos) toggle(index int) error {
-	t := *todo
+func (todos *Todos) toggle(index int) error {
+	t := *todos
 	if err := t.validateIndex(index); err != nil {
 		return err
 	}
@@ -61,5 +61,19 @@ func (todo *Todos) toggle(index int) error {
 		t[index].CompletedAt = nil
 		t[index].Completed = false
 	}
+	return nil
+}
+
+func (todos *Todos) edit(index int, title string) error {
+	t := *todos
+	if err := t.validateIndex(index); err != nil {
+		return err
+	}
+
+	if title == "" {
+		return errors.New("Error: title is require")
+	}
+
+	t[index].Title = title
 	return nil
 }
