@@ -2,6 +2,10 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
 )
 
 type CmdFlags struct {
@@ -24,4 +28,32 @@ func NewCmdFlags() *CmdFlags {
 	flag.Parse()
 
 	return &cf
+}
+
+func (cf *CmdFlags) Execute(todos *Todos) {
+	switch {
+	case cf.List:
+		todos.list()
+	case cf.Add != "":
+		todos.add(cf.Add)
+	case cf.Edit != "":
+		editVal := strings.SplitN(cf.Edit, ":", 2)
+		if len(editVal) != 2 {
+			fmt.Println("Error: invalid format for edit. Please use id:new_title")
+			os.Exit(1)
+		}
+		index, err := strconv.Atoi(editVal[0])
+		if err != nil {
+			fmt.Println("Error: invalid index for edit")
+			os.Exit(1)
+		}
+		todos.edit(index, editVal[1])
+	case cf.Del != -1:
+		todos.delete(cf.Del)
+	case cf.Toggle != -1:
+		todos.toggle(cf.Toggle)
+	default:
+		fmt.Println("Error: Invalid command")
+	}
+
 }
