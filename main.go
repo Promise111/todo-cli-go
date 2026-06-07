@@ -16,9 +16,6 @@ func main() {
 	todos.toggle(1)
 	todos.edit(0, "Bake bread")
 	todos.list()
-	if err := storage.Save(todos); err != nil {
-		fmt.Println("save error:", err)
-	}
-
+	storage.Save(todos)
 	fmt.Printf("%+v\n\n", todos)
 }
