@@ -8,9 +8,9 @@ func main() {
 	var todos = Todos{}
 	storage := NewStorage[Todos]("todos.json")
 	storage.Load(&todos)
-	todos.add("Build a todo cli")
-	todos.add("Boil water")
-	todos.add("Make oats")
+	// todos.add("Build a todo cli")
+	// todos.add("Boil water")
+	// todos.add("Make oats")
 	fmt.Printf("%+v\n\n", todos)
 	// todos.delete(0)
 	todos.toggle(1)
