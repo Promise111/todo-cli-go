@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	// "fmt"
 )
 
 func main() {
@@ -19,5 +19,5 @@ func main() {
 	// todos.edit(0, "Bake bread")
 	// todos.list()
 	storage.Save(todos)
-	fmt.Printf("%+v\n\n", todos)
+	// fmt.Printf("%+v\n\n", todos)
 }
