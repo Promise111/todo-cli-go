@@ -1,26 +1,14 @@
 [
     {
-        "Title": "Bake bread",
+        "Title": "enjoy some coffee",
         "Completed": false,
-        "CreatedAt": "2026-06-07T01:10:29.2811234+01:00",
-        "CompletedAt": null
-    },
-    {
-        "Title": "leash the dogs",
-        "Completed": true,
-        "CreatedAt": "2026-06-07T01:10:29.2811234+01:00",
-        "CompletedAt": "2026-06-07T21:31:46.8464404+01:00"
-    },
-    {
-        "Title": "Make oats",
-        "Completed": false,
-        "CreatedAt": "2026-06-07T01:10:29.2811234+01:00",
+        "CreatedAt": "2026-06-08T01:05:33.4111065+01:00",
         "CompletedAt": null
     },
     {
         "Title": "run a mile",
         "Completed": true,
-        "CreatedAt": "2026-06-07T22:20:57.4888981+01:00",
-        "CompletedAt": "2026-06-07T22:25:40.4563197+01:00"
+        "CreatedAt": "2026-06-08T01:09:05.4797402+01:00",
+        "CompletedAt": "2026-06-08T01:18:09.0692773+01:00"
     }
 ]

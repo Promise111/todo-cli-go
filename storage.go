@@ -14,34 +14,34 @@ func NewStorage[T any](fileName string) *Storage[T] {
 	return &Storage[T]{FileName: fileName}
 }
 
-func (storage *Storage[T]) Save(data T) error {
+func (s *Storage[T]) Save(data T) error {
 	fileData, err := json.MarshalIndent(data, "", "    ")
 	if err != nil {
 		return err
 	}
 
-	_, statErr := os.Stat("data")
-	if statErr != nil && !os.IsNotExist(statErr) {
-		fmt.Println(statErr)
-		return statErr
+	// check that data dir exists
+	_, dirErr := os.Stat("data")
+	if dirErr != nil && !os.IsNotExist(dirErr) {
+		return dirErr
 	}
 
-	if os.IsNotExist(statErr) {
+	// permissions 0755 (Read/Write/Execute for Owner; Read/Execute for others)
+	if os.IsNotExist(dirErr) {
+		fmt.Println(dirErr)
 		err = os.Mkdir("data", 0755)
 		if err != nil {
 			return err
 		}
 	}
 
-	return os.WriteFile("data/"+storage.FileName, fileData, 0644)
+	return os.WriteFile("data/"+s.FileName, fileData, 0644)
 }
 
 func (s *Storage[T]) Load(data *T) error {
 	fileData, err := os.ReadFile("data/" + s.FileName)
 	if err != nil {
-		fmt.Println(err)
 		return err
 	}
-
 	return json.Unmarshal(fileData, data)
 }
